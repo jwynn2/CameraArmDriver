@@ -6,7 +6,7 @@
 CameraArmDriver::CameraArmDriver(){
   // DEFAULT
 }
-void CameraArmDriver::begin(int basePin, int shoulderPin){
+void CameraArmDriver::cameraArmBegin(int basePin, int shoulderPin){
   _basePin = basePin;
   _shoulderPin = shoulderPin;
 
@@ -21,6 +21,7 @@ void CameraArmDriver::end(){
 }
 
 void CameraArmDriver::turnBase(char pos ){
+  setCameraFacePos(pos);
   if(pos == 'r'){
 	  Serial.println("Base Right");
       _base.write(CW_BASE);
@@ -50,17 +51,30 @@ void CameraArmDriver::rest(){
   // make sure the shoulder is 90 to avoid colision
   turnShoulder('c');
   delay(700);
-  _base.write(CENTER_BASE-30);
+  _base.write(CENTER_BASE+30);
   turnShoulder('r');
 }
 
 void CameraArmDriver::turn(char pos){
   turnShoulder('c');
   turnBase(pos);
+  setCameraFacePos(pos);
+}
+int CameraArmDriver::getCameraFacePosition(){
+  return cameraFacePos; 
+}
+void CameraArmDriver::setCameraFacePos(char pos){
+  if(pos == 'r'){
+    cameraFacePos = 1;
+  }else if(pos == 'l'){
+    cameraFacePos = -1;
+  }else if(pos == 'c'){
+  cameraFacePos = 0;
+  }
 }
 
 void CameraArmDriver::commandMode(){
-
+  // Serial.begin(115200);
 	// print instruction
 	  Serial.println("\n\nServoTest commands:");
 

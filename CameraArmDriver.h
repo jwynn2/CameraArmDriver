@@ -22,11 +22,11 @@ class CameraArmDriver{
   // these defineition need to be config and change everytime using a new set of servo.
   	// custom min/max pulse width settings that best suit my servos
   //shoulder
-  const int CENTER_SHOULDER= 74;
+  const int CENTER_SHOULDER= 76;
   const int CW_SHOULDER= 0; // right
   const int CCW_SHOULDER =170; // left
   const int SHOULDER_MIN_PW= 570;//calibrate the servo to get the best fit value.
-  const int SHOULDER_MAX_PW =2400;
+  const int SHOULDER_MAX_PW =2470;
 
   //base
   const int CENTER_BASE =87;
@@ -41,11 +41,16 @@ class CameraArmDriver{
 
   CameraArmDriver();// DEFAULT
   // init Servo
-  void begin(int basePin, int shoulderPin);
+  void cameraArmBegin(int basePin, int shoulderPin);
   void end();
   void turnBase(char pos );
   void turnShoulder(char pos );
 	void commandMode();
+  /**
+   * This function get/ set the cameraFacePosition
+   */
+  int getCameraFacePosition();
+  void setCameraFacePos(char pos); 
 
   /**
    * This function turn the base and init the shoulder to the left or right
@@ -64,6 +69,7 @@ class CameraArmDriver{
   private:
     Servo _base, _shoulder;
     int _basePin, _shoulderPin;
+    byte cameraFacePos; // 1 beging right, -1 begin left, 0 being middle  
 };
 
 
