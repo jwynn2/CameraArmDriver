@@ -22,18 +22,18 @@ class CameraArmDriver{
   // these defineition need to be config and change everytime using a new set of servo.
   	// custom min/max pulse width settings that best suit my servos
   //shoulder
-  const int CENTER_SHOULDER= 76;
+  const int CENTER_SHOULDER= 87;
   const int CW_SHOULDER= 0; // right
   const int CCW_SHOULDER =170; // left
-  const int SHOULDER_MIN_PW= 570;//calibrate the servo to get the best fit value.
-  const int SHOULDER_MAX_PW =2470;
+  const int SHOULDER_MIN_PW= 544;//calibrate the servo to get the best fit value.
+  const int SHOULDER_MAX_PW =2400;
 
   //base
-  const int CENTER_BASE =87;
+  const int CENTER_BASE =80;
   const int CW_BASE =8; // right
-  const int CCW_BASE =173; // left
-  const int BASE_MIN_PW =570;//calibrate the servo to get the best fit value.
-  const int BASE_MAX_PW =2470;
+  const int CCW_BASE =175; // left
+  const int BASE_MIN_PW =544;//calibrate the servo to get the best fit value.
+  const int BASE_MAX_PW =2400;
 
 	#define S_OFFSET 0
   #define S_SPEED 20 // um pwm delay interpret as speed.
